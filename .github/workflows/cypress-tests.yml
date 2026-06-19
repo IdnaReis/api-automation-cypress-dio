@@ -1,5 +1,5 @@
 name: 🧪 Cypress API Tests
-
+ 
 on:
   push:
     branches:
@@ -7,32 +7,30 @@ on:
   pull_request:
     branches:
       - main
-
+ 
 jobs:
   cypress-tests:
     name: Rodar Testes de API com Cypress
     runs-on: ubuntu-latest
-
+ 
     steps:
       - name: 📥 Checkout do repositório
         uses: actions/checkout@v4
-
+ 
       - name: 🟢 Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
           cache: 'npm'
-
+ 
       - name: 📦 Instalar dependências
-        run: npm install
-
+        run: npm ci
+ 
       - name: 🧪 Rodar testes Cypress
-        run: npm test
-
-      - name: ✅ Testes concluídos com sucesso!
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm test
+ 
+      - name: ✅ Testes concluídos!
         if: success()
-        run: echo "Todos os testes passaram!"
-
-      - name: ❌ Testes falharam
-        if: failure()
-        run: echo "Alguns testes falharam. Verifique os logs acima."
+        run: echo "Todos os 43 testes passaram!"

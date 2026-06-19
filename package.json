@@ -1,0 +1,12 @@
+{
+  "name": "idna-api-tests-cypress",
+  "version": "1.0.0",
+  "description": "Automação de testes de API com Cypress - Desafio DIO por Idna Reis",
+  "scripts": {
+    "test": "cypress run",
+    "test:open": "cypress open"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.0"
+  }
+}

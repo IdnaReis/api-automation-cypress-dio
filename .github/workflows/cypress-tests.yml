@@ -1,36 +1,13 @@
-name: 🧪 Cypress API Tests
- 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
- 
-jobs:
-  cypress-tests:
-    name: Rodar Testes de API com Cypress
-    runs-on: ubuntu-latest
- 
-    steps:
-      - name: 📥 Checkout do repositório
-        uses: actions/checkout@v4
- 
-      - name: 🟢 Configurar Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: 'npm'
- 
-      - name: 📦 Instalar dependências
-        run: npm ci
- 
-      - name: 🧪 Rodar testes Cypress
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm test
- 
-      - name: ✅ Testes concluídos!
-        if: success()
-        run: echo "Todos os 43 testes passaram!"
+const { defineConfig } = require('cypress')
+
+module.exports = defineConfig({
+  e2e: {
+    baseUrl: 'https://jsonplaceholder.typicode.com',
+    specPattern: 'cypress/e2e/**/*.cy.js',
+    supportFile: 'cypress/support/e2e.js',
+    video: true,
+    videosFolder: 'evidencias/cypress-videos',
+    screenshotOnRunFailure: true,
+    screenshotsFolder: 'evidencias/cypress-screenshots'
+  }
+})
